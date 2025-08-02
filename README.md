@@ -1,175 +1,152 @@
 # The Wild Oasis
 
-This is a [Next.js](https://nextjs.org/) project for a luxury cabin booking platform, bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Welcome to **The Wild Oasis** – a luxurious cabins hotel web application built with [Next.js](https://nextjs.org/), [Supabase](https://supabase.com/), and [Tailwind CSS](https://tailwindcss.com/). This project showcases modern full-stack development best practices, including server-side rendering, dynamic routing, and responsive design.
 
-## 🏞️ Project Overview
+---
 
-The Wild Oasis is a cabin booking application that allows users to browse and book luxury cabins. The project features a modern design with Tailwind CSS and follows Next.js App Router conventions.
+## Table of Contents
 
-## 🚀 Getting Started
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Environment Variables](#environment-variables)
+- [Scripts](#scripts)
+- [Contributing](#contributing)
+- [License](#license)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- 🏕️ **Browse Cabins**: View a curated list of luxury cabins with images, descriptions, and amenities.
+- 🔍 **Cabin Details**: Dynamic pages for each cabin with detailed info and reservation options.
+- 🗺️ **Location Info**: See where each cabin is located in the Italian Dolomites.
+- 👤 **Guest Area**: Secure guest area for reservations and account management.
+- ⚡ **Fast & Responsive**: Optimized for all devices using Tailwind CSS.
+- 🔒 **Authentication**: (If enabled) Secure login and registration via Supabase.
+- 🚀 **SEO Optimized**: Dynamic metadata for better search engine visibility.
+
+---
+
+## Tech Stack
+
+- **Frontend**: [Next.js](https://nextjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Icons**: [Heroicons](https://heroicons.com/)
+- **Backend/Database**: [Supabase](https://supabase.com/)
+- **Image Optimization**: [Next/Image](https://nextjs.org/docs/pages/api-reference/components/image)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- Supabase project (for backend/database)
+
+### Installation
+
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/your-username/next-wild-oasis.git
+    cd next-wild-oasis
+    ```
+
+2. **Install dependencies**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3. **Configure environment variables**
+
+    Create a `.env.local` file in the root directory and add your Supabase credentials:
+    ```
+    NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+    ```
+
+4. **Run the development server**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) to view the app.
+
+---
+
+## Project Structure
+
+```
+app/
+  |_ _components/      # Reusable UI components (Header, Logo, Navigation, etc.)
+  |_ _lib/             # Data fetching and Supabase client
+  |_ _styles/          # Global styles (Tailwind config, CSS)
+  |_ cabins/           # Dynamic cabin pages ([cabinId]/page.js)
+  |_ layout.js         # Main layout file
+  |_ page.js           # Home page
+public/
+  |_ bg.png            # Background image
+  |_ ...               # Other static assets
+.env.local             # Environment variables
+README.md              # Project documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-## 📁 Project Structure
+## Environment Variables
 
-### Current Pages and Routes
+| Variable                   | Description                |
+|----------------------------|----------------------------|
+| NEXT_PUBLIC_SUPABASE_URL   | Supabase project URL       |
+| NEXT_PUBLIC_SUPABASE_ANON_KEY | Supabase anon public key |
 
-The application currently implements the following routes:
+---
 
-#### 🏠 Main Pages
+## Scripts
 
-- **`/` (Home Page)** - `app/page.js`
+| Command         | Description                      |
+|-----------------|----------------------------------|
+| `npm run dev`   | Start development server         |
+| `npm run build` | Build for production             |
+| `npm start`     | Start production server          |
+| `npm run lint`  | Run ESLint checks                |
 
-  - Landing page with welcome message
-  - Link to explore cabins
-  - Entry point for the application
+---
 
-- **`/cabins` (Cabins Page)** - `app/cabins/page.js`
+## Contributing
 
-  - Lists available cabins for booking
-  - Includes demo API fetch from JSONPlaceholder
-  - Features Counter component for interactivity
+Contributions are welcome! Please open issues or submit pull requests for improvements, bug fixes, or new features.
 
-- **`/about` (About Page)** - `app/about/page.js`
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/my-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/my-feature`)
+5. Open a pull request
 
-  - Information about The Wild Oasis
-  - Company details and story
+---
 
-- **`/account` (Account Page)** - `app/account/page.js`
-  - User account management
-  - Profile and reservation settings
+## License
 
-### 🧩 Current Components
+This project is licensed under the [MIT License](LICENSE).
 
-#### Core Components (`app/_components/`)
+---
 
-- **`Logo.js`** - Site branding and logo display
-- **`Navigation.js`** - Main navigation menu with links to all pages
-- **`Counter.js`** - Interactive counter component (demo functionality)
+## Acknowledgements
 
-#### Layout Components
+- [Next.js](https://nextjs.org/)
+- [Supabase](https://supabase.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Heroicons](https://heroicons.com/)
 
-- **`app/layout.js`** - Root layout with header, main content, and footer
-- **`app/loading.js`** - Loading UI component
+---
 
-### 🎨 Styling
+## Contact
 
-- **Global Styles** - `app/_styles/globals.css`
-- **Tailwind Configuration** - `tailwind.config.js`
-- **PostCSS Configuration** - `postcss.config.mjs`
-
-### 📦 Dependencies
-
-#### Core Dependencies
-
-- **Next.js 14.2.30** - React framework with App Router
-- **React 18** - UI library
-- **@heroicons/react** - Icon library
-- **Tailwind CSS** - Utility-first CSS framework
-
-#### Development Dependencies
-
-- **ESLint** - Code linting
-- **PostCSS** - CSS processing
-
-## 🗂️ Planned Features (Starter Components Available)
-
-The `starter/` directory contains ready-to-implement components for future features:
-
-### 📋 Booking Components
-
-- `CabinCard.js` - Individual cabin display cards
-- `DateSelector.js` - Date picker for reservations
-- `ReservationForm.js` - Booking form component
-- `ReservationCard.js` - Display user reservations
-- `DeleteReservation.js` - Remove bookings functionality
-
-### 🔐 Authentication Components
-
-- `SignInButton.js` - Google sign-in integration
-- `SignOutButton.js` - User logout functionality
-- `LoginMessage.js` - Login prompt component
-
-### 🧭 Navigation Components
-
-- `Header.js` - Enhanced header component
-- `SideNavigation.js` - Account sidebar navigation
-
-### 🎛️ UI Components
-
-- `Spinner.js` & `SpinnerMini.js` - Loading indicators
-- `TextExpander.js` - Expandable text functionality
-- `Price.js` - Price display component
-- `SelectCountry.js` - Country selection dropdown
-
-### 📄 Additional Pages
-
-- `home-page.js` - Enhanced landing page
-- `cabin-page.js` - Individual cabin details
-- `login-page.js` - User authentication
-- `profile-page.js` - User profile management
-- `reservations-page.js` - User booking history
-- `reservation-edit-page.js` - Modify existing bookings
-- `thank-you-page.js` - Booking confirmation
-
-### 🔧 Utilities
-
-- `data-service.js` - API interaction service
-- `colors.json` - Design system colors
-- `error.js` & `not-found.js` - Error handling pages
-
-## 🛠️ Current Implementation Status
-
-### ✅ Implemented
-
-- [x] Basic Next.js App Router setup
-- [x] Tailwind CSS configuration
-- [x] Root layout with header/footer
-- [x] Core navigation between pages
-- [x] Home, About, Cabins, and Account pages
-- [x] Logo and Navigation components
-- [x] Loading states
-
-### 🚧 In Development
-
-- [ ] Individual cabin details and booking
-- [ ] User authentication system
-- [ ] Reservation management
-- [ ] Payment integration
-- [ ] User profiles and account management
-
-## 🎯 Next Steps
-
-1. Implement authentication with NextAuth.js
-2. Set up database integration (Supabase recommended)
-3. Create cabin booking functionality
-4. Add payment processing
-5. Implement user reservation management
-6. Deploy to Vercel
-
-## 📚 Learn More
-
-To learn more about Next.js and the technologies used:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs) - utility-first CSS framework
-- [Heroicons](https://heroicons.com/) - Beautiful hand-crafted SVG icons
-
-## 🚀 Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For questions or feedback, please contact [your-email@example.com](mailto:your-email@example.com).
