@@ -1,7 +1,13 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { getCabins } from "../_lib/data-service";
 import CabinCard from "./CabinCard";
 
+
+//opting one of the components out of the data cash
+// will opt out the enter route from the cache
+
 async function CabinList() {
+    noStore();
     const cabins = await getCabins();
 
     if (!cabins || cabins.length === 0) return null;

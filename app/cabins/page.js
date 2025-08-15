@@ -2,7 +2,10 @@ import CabinList from "../_components/CabinList";
 import { Suspense } from "react";
 import Spinner from "../_components/Spinner";
 
-export const revalidate = 0;
+// tells it to not cache this route
+// export const revalidate = 0;
+// export const revalidate = 3600; 
+// //partial re-rendering is so useful
 
 export const metadata = {
     title: "Cabins",
