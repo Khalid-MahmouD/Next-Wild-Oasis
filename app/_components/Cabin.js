@@ -2,6 +2,7 @@ import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import TextExpander from "./TextExpander";
 
+
 function Cabin({ cabin }) {
 
 
