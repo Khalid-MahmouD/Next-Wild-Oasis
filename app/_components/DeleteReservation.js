@@ -30,33 +30,40 @@ function DeleteReservation({ bookingId, onDelete }) {
 
 export default DeleteReservation;
 
-// how i can know the status of the action
-// pending / error / success
-// disable the button when pending
-// show a message when error
-// maybe redirect or show a message when success
-// isPending -> true / false
-// startTransition -> function to start the action
-// const [isPending, startTransition] = useTransition();
-// useTransition is a react hook that allows us to manage the state of a transition
-// it returns an array with two elements
-// the first element is a boolean that indicates if the transition is pending or not
-// the second element is a function that we can use to start the transition
-// when we call this function, react will know that we are starting a transition
-// and it will set isPending to true
-// when the transition is done, react will set isPending to false
-// we can use this boolean to disable the button when the action is pending
-// and show a loading spinner or something else
-// we can also use it to show a message when the action is done
-// for example, we can show a success message or redirect the user to another page
-// we can also use it to show an error message if the action fails
-// for example, if the user is not logged in or if there is a network error
-// we can use this hook to improve the user experience and make our app more responsive
-// by showing feedback to the user when they perform an action
-// this is especially important for actions that take some time to complete
-// like deleting a reservation, which may involve a network request
-// so using useTransition helps us manage the state of these actions better
-// and provide a smoother experience for the user
-// in this case, we will use it to manage the state of the deleteReservation action
-// and disable the button while the action is pending
-// and show a confirmation dialog before deleting the reservation
+// ---
+// React useTransition Hook (General Information)
+// ---
+// useTransition is a React hook that lets you mark certain updates as transitions. Transitions are typically non-urgent UI updates, such as navigation, filtering, or data mutations, that can be interrupted or deferred to keep the app responsive.
+//
+// Syntax:
+//   const [isPending, startTransition] = useTransition();
+//
+// - isPending: boolean, true while the transition is ongoing.
+// - startTransition: function, call this to wrap the code that triggers the transition.
+//
+// Usage:
+//   startTransition(() => {
+//     // code for non-urgent update (e.g., state update, async call)
+//   });
+//
+// Benefits:
+// - Keeps the UI responsive during slow updates.
+// - Allows you to show loading indicators or disable UI elements while a transition is pending.
+// - Improves user experience for actions that may take time (e.g., network requests).
+//
+// ---
+// Project Use Case: DeleteReservation Component
+// ---
+// In this project, useTransition is used to manage the state of deleting a reservation.
+//
+// - When the user clicks the delete button, a confirmation dialog appears.
+// - If confirmed, startTransition is called to begin the deletion process.
+// - While the deletion is pending (isPending is true), the button is disabled and a spinner is shown.
+// - This provides immediate feedback and prevents duplicate actions, improving the user experience.
+//
+// Example:
+//   const [isPending, startTransition] = useTransition();
+//   function handleDelete() {
+//     startTransition(() => onDelete(bookingId));
+//   }
+//   // Use isPending to disable the button and show a spinner.
