@@ -1,8 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { isValidNationalID } from "../_utility";
 import { auth, signIn, signOut } from "./auth";
+import { getBookings } from "./data-service";
 import { supabase } from "./supabase";
 
 export async function signInAction() {
@@ -44,6 +46,12 @@ export async function deleteReservation(bookingId) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in to update your profile");
 
+  const guestBookings = await getBookings(session.user.guestId);
+  const guestBookingIds = guestBookings.map((b) => b.id);
+  if (!guestBookingIds.includes(parseInt(bookingId))) {
+    throw new Error("You can only delete your own reservations");
+  }
+
   const { data, error } = await supabase
     .from("bookings")
     .delete()
@@ -51,4 +59,42 @@ export async function deleteReservation(bookingId) {
 
   if (error) throw new Error("Booking could not be deleted");
   revalidatePath("/account/reservations");
+}
+
+export async function updateBooking(formData) {
+  const bookingId = Number(formData.get("bookingId"));
+
+  // 1) Authenticate the user
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in to update your profile");
+
+  // 2) Authorize the user (is this their booking?)
+  const guestBookings = await getBookings(session.user.guestId);
+  const guestBookingIds = guestBookings.map((b) => b.id);
+  if (!guestBookingIds.includes(parseInt(bookingId))) {
+    throw new Error("You can only update your own reservations");
+  }
+
+  // Validate the input
+  const updateData = {
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 500), // Limit to 500 chars
+  };
+
+  // mutation
+  const { error } = await supabase
+    .from("bookings")
+    .update(updateData)
+    .eq("id", bookingId)
+    .select()
+    .single();
+
+  // error handling
+  if (error) throw new Error("Booking could not be updated");
+
+  // revalidating
+  revalidatePath(`/account/reservations/edit/${bookingId}`);
+  revalidatePath(`/account/reservations`);
+  // redirecting
+  redirect("/account/reservations");
 }
